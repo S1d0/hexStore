@@ -73,7 +73,7 @@ public class InMemoryCategoryRepository implements CategoryRepository {
 
     @Override
     public Optional<Category> findById(String s) {
-        return categories.stream().filter(c -> c.equals(s)).findFirst();
+        return categories.stream().filter(c -> c.getName().equals(s)).findFirst();
     }
 
     @Override

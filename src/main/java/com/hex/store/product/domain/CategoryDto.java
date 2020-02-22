@@ -10,5 +10,5 @@ import lombok.Getter;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class CategoryDto {
-    final String category;
+    final String name;
 }

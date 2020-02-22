@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 class InMemoProductRepo implements ProductRepository {
+    private static Long idCounter = 1L;
     List<Product> products = new ArrayList<>();
 
     @Override
@@ -38,7 +39,11 @@ class InMemoProductRepo implements ProductRepository {
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(Long id) {
+        boolean success = products.removeIf(p -> p.getId().equals(id));
+        if(!success) {
+            throw new IllegalStateException();
+        }
     }
 
     @Override
@@ -64,7 +69,9 @@ class InMemoProductRepo implements ProductRepository {
                 .ifPresent(p -> {
                     throw new IllegalArgumentException();
                 });
+        s.setId(idCounter);
         products.add(s);
+        idCounter++;
         return s;
     }
 
